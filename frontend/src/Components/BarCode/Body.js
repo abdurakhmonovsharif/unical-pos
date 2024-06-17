@@ -14,7 +14,7 @@ export const Body = ({product, currency, marketName, isShowPrice}) => {
     })
     const {currency: currencyEx} = useSelector((state) => state.currency)
     return (
-        <div className='w-[58mm]  h-[30mm]  mt-[100px] rotate-90 flex items-center'>
+        <div className='w-[58mm]  h-[30mm]  mt-[110px] rotate-90 flex items-center'>
             <div className='h-[30mm] flex  flex-wrap justify-between'>
                 <span className='text-start font-bold w-[50mm] text-[10px] '>
                     {t('Kodi')}: {product.category && product.category.code}{' '}
