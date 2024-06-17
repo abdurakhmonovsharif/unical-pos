@@ -38,7 +38,7 @@ export const BarCode = (
                     })
                 )}
             {
-                map(printedData, item => <div className='mt-[-40px]' key={uniqueId('barCodeContainer')}>
+                map(printedData, item => <div  key={uniqueId('barCodeContainer')}>
                     {
                         map(repeat(item.numberOfChecks, item.product), (product) => <Body
                             key={uniqueId('barCode')}
