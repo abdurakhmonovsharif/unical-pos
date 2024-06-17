@@ -24,7 +24,7 @@ const navListForDirector = [
     {
         id: 2,
         label: 'Sotuv',
-        path: 'sotuv',
+        path: 'sotuv/sotish',
         icon: <IoWallet size={'1.5rem'} />,
         submenu: false
     },
