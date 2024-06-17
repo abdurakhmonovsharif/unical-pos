@@ -14,18 +14,18 @@ export const Body = ({product, currency, marketName, isShowPrice}) => {
     })
     const {currency: currencyEx} = useSelector((state) => state.currency)
     return (
-        <div className='w-[58mm]  h-[30mm]  mt-[110px] rotate-90 flex items-center'>
-            <div className='h-[30mm] flex  flex-wrap justify-between'>
-                <span className='text-start font-bold w-[50mm] text-[10px] '>
-                    {t('Kodi')}: {product.category && product.category.code}{' '}
+        <div className='w-[58mm]  h-[30mm]   ms-[-55px]  mt-[57px] pb-[-50px]  rotate-90 flex items-center'>
+            <div className='h-[30mm] w-[45mm] flex  flex-wrap justify-between'>
+                <span className='text-start font-bold text-[14px] '>
+                    <span className='text-[10px]'>{t('Kodi')}</span>: {product.category && product.category.code}{' '}
                     {product.productdata && product.productdata.code}
                 </span>
-                <span className='text-center w-full leading-[1.1]  text-[14px]'>
+                <span className='text-center w-full leading-[1.1]  text-[15px]'>
                     {product.productdata && product.productdata.name}
                 </span>
 
                 {isShowPrice && (
-                    <div className='text-[18px] w-full font-bold text-center '>
+                    <div className='text-[20px] w-full font-bold text-center '>
                         <span>
                             {(product.price &&
                                 (currency === 'UZS'
@@ -42,8 +42,8 @@ export const Body = ({product, currency, marketName, isShowPrice}) => {
                     </div>
                 )}
             </div>
-            <div className='-rotate-90  '>
-                <canvas className="w-[30mm] mt-[-65px]" ref={inputRef} />
+            <div className='-rotate-90 fixed end-[-30px] '>
+                <canvas className="w-[30mm]  " ref={inputRef} />
             </div>
         </div>
     )
