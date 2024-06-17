@@ -818,7 +818,7 @@ const RegisterSelling = () => {
         if (body.debt?.debtuzs > 0 && payEndDate === "") {
             return warningDebtClientPayEndDate()
         }
-        if(body.saleproducts.some((item)=>item.pieces===0||item.pieces==="")){
+        if (body.saleproducts.some((item) => item.pieces === 0 || item.pieces === "")) {
             return warningProductPiecesEmpty()
         }
         dispatch(saleConnectorId ? addPayment(body) : makePayment(body)).then(
@@ -1218,7 +1218,7 @@ const RegisterSelling = () => {
             )
         setTableProducts(newRelease)
     }
-   
+
     const handleChangeProductNumberTable = (id, value) => {
         const validNumberRegex = /^[0-9]+(\.[0-9]*)?$/;
         if (validNumberRegex.test(value) || value === "") {
@@ -1524,14 +1524,15 @@ const RegisterSelling = () => {
     }
 
     const handleClickProduct = (product) => {
-        setModalProduct({ visible: true, mode: product.width === 0 ? '1' : '2' })
-        setIsClickedProduct({
-            ...product,
-            columns: product?.columns || [],
-            size: product?.size || 0,
-            piece: product?.piece || 0,
-            length: product?.length || 0,
-        })
+        console.log("function is removed!");
+        // setModalProduct({ visible: true, mode: product.width === 0 ? '1' : '2' })
+        // setIsClickedProduct({
+        //     ...product,
+        //     columns: product?.columns || [],
+        //     size: product?.size || 0,
+        //     piece: product?.piece || 0,
+        //     length: product?.length || 0,
+        // })
     }
     const handleSelectFilial = (id, value) => {
         getFilialProducts(value)
@@ -1967,7 +1968,7 @@ const RegisterSelling = () => {
                                         <FieldContainer
                                             type={'text'}
                                             step={'0.11'}
-                                            label={index===0&&"O'lcham"}
+                                            label={index === 0 && "O'lcham"}
                                             value={value.col1}
                                             placeholder={"O'lcham"}
                                             onChange={({ target }) =>
@@ -1980,7 +1981,7 @@ const RegisterSelling = () => {
                                         />
                                         <FieldContainer
                                             type={'text'}
-                                            label={index===0&&"Soni"}
+                                            label={index === 0 && "Soni"}
                                             value={value.col2}
                                             placeholder={'Soni'}
                                             step={'0.11'}
@@ -1997,7 +1998,7 @@ const RegisterSelling = () => {
                                             type={'text'}
                                             value={value.result}
                                             placeholder={'Umumiy'}
-                                            label={index===0&&'Umumiy'}
+                                            label={index === 0 && 'Umumiy'}
                                             onChange={({ target }) =>
                                                 handleParameters1InputChange(
                                                     target.value,
@@ -2012,8 +2013,7 @@ const RegisterSelling = () => {
                                             handleParameters1InputsRemove(index)
                                         }
                                         type='button'
-                                        className={`${ 
-                                            index==0?"mt-6":""
+                                        className={`${index == 0 ? "mt-6" : ""
                                             }  text-error-500 border w-9 h-9 rounded-full flex justify-center items-center`}
                                     >
                                         <FaTrash />
