@@ -17,13 +17,13 @@ export const Body = ({ product, currency, marketName, isShowPrice }) => {
 
     return (
         <div className='page'>
-            <div className='label w-[58mm] h-[30mm]   rotate-90 flex items-center'>
+            <div className='label w-[58mm]  h-[26mm]   rotate-90 flex items-center'>
                 <div className='h-[30mm] w-[45mm] flex flex-wrap justify-between'>
                     <span className='text-start font-bold text-[14px]'>
                         <span className='text-[10px]'>{t('Kod')}</span>: {product.category && product.category.code}{' '}
                         {product.productdata && product.productdata.code}
                     </span>
-                    <span className='text-center w-full leading-[1.1] text-[15px]'>
+                    <span className='text-center w-full leading-[1.1] text-[14px]'>
                         {product.productdata && product.productdata.name}
                     </span>
 
@@ -41,7 +41,7 @@ export const Body = ({ product, currency, marketName, isShowPrice }) => {
                         </div>
                     )}
                 </div>
-                <div className='-rotate-90 absolute end-[-30px]'>
+                <div className='-rotate-90 absolute end-[-35px]'>
                     <canvas className='w-[30mm] ' ref={inputRef} /> 
                 </div>
             </div>
