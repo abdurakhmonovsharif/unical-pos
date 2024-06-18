@@ -76,7 +76,7 @@ function CreateShop({handleClickNext, editedMarket}) {
                 <FieldContainer
                     label={`${t('Do\'kon nomi...')}`}
                     maxWidth={'grow'}
-                    placeholder={'misol : Мой Прайс'}
+                    placeholder={'misol : Unical POST'}
                     type='text'
                     value={shopName}
                     star={true}
@@ -85,7 +85,7 @@ function CreateShop({handleClickNext, editedMarket}) {
                 <FieldContainer
                     label={'Tashkilot nomi'}
                     maxWidth={'grow'}
-                    placeholder={'misol : Мой Прайс'}
+                    placeholder={'misol : Unical POST'}
                     type='text'
                     value={organizationName}
                     onChange={(e) => setOrganizationName(e.target.value)}
@@ -111,7 +111,7 @@ function CreateShop({handleClickNext, editedMarket}) {
                 <FieldContainer
                     label={`Bank nomi`}
                     maxWidth={'grow'}
-                    placeholder={'misol: Мой Прайс'}
+                    placeholder={'misol: Unical POST'}
                     type='text'
                     value={bankName}
                     onChange={(e) => setBankName(e.target.value)}
