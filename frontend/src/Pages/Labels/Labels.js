@@ -322,7 +322,7 @@ const Labels = ({ id }) => {
                 if (payload?.length > 0) {
                     const ReportData = map(payload, (item, index) => ({
                         nth: index + 1,
-                        salom:"hello",
+                        salom: "hello",
                         code: item?.productdata?.code || '',
                         name: item?.productdata?.name || '',
                         total: item.total + item?.unit?.name || '',
