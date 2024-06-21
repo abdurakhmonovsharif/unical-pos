@@ -15,7 +15,7 @@ height: '30cm',
 const {currency: currencyEx} = useSelector((state) => state.currency)
 return (
 <div className='page'>
-<div className=' w-[58mm]  h-[30mm]    rotate-90 flex items-center'>
+<div className=' w-[58mm]  h-[30mm] rotate-90 flex items-center'>
 <div className='h-[30mm] w-[45mm] flex  flex-wrap justify-between'>
 <span className='text-start font-bold text-[10px] '>
 {t('Kodi')}: {product.category && product.category.code}{' '}
