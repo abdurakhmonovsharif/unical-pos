@@ -25,7 +25,7 @@ export const BarCode = (
             {productForCheques &&
                 countOfCheques &&
                 map(productForCheques, (productForCheque) =>
-                    range(0, countOfCheques).map(() => {
+                    range(0, countOfCheques).map((_,index) => {
                         return (
                             <Body
                                 key={uniqueId('barCode')}
@@ -33,6 +33,7 @@ export const BarCode = (
                                 product={productForCheque}
                                 marketName={marketName}
                                 isShowPrice={isShowPrice}
+                                index={index}
                             />
                         )
                     })

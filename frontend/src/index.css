@@ -11,8 +11,8 @@
     justify-content: start;
     align-items: start;
     page-break-after: always;
-    margin-top: 30px !important;
-    margin-left: -48px !important;
+    margin-top: 45px !important;
+    margin-left: -28px !important;
 }
 @media print {
     .page {

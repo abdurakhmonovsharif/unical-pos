@@ -1,9 +1,9 @@
 import axios from 'axios'
 import Store from '../App/store'
-import {logOut} from '../Pages/Login/loginSlice'
+import { logOut } from '../Pages/Login/loginSlice'
 
-const baseURL = process.env.REACT_APP_API_ENDPOINT
-// const baseURL =  'http://185.241.61.68/api' 
+// const baseURL = process.env.REACT_APP_API_ENDPOINT
+const baseURL = 'https://seven-meals-stand.loca.lt/api'
 
 const instance = axios.create({
     baseURL,
@@ -13,10 +13,10 @@ const instance = axios.create({
 })
 instance.interceptors.request.use(
     (config) => {
-        const {market, user} = Store.getState().login
+        const { market, user } = Store.getState().login
         const userData = JSON.parse(localStorage.getItem('userData'))
         if (userData) {
-            const {token} = userData
+            const { token } = userData
             config.headers['Authorization'] = `Bearer ${token}`
         }
         if (
@@ -44,9 +44,9 @@ instance.interceptors.request.use(
 )
 instance.interceptors.response.use(
     (response) => response,
-    ({response: {data, status}}) => {
+    ({ response: { data, status } }) => {
         if (!status) {
-            return Promise.reject({message: 'Internet mavjud emas'})
+            return Promise.reject({ message: 'Internet mavjud emas' })
         } else if (status === 401) {
             localStorage.removeItem('useData')
             Store.dispatch(logOut(data?.error || data?.message))
