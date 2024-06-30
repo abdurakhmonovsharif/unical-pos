@@ -2,8 +2,8 @@ import axios from 'axios'
 import Store from '../App/store'
 import { logOut } from '../Pages/Login/loginSlice'
 
-// const baseURL = process.env.REACT_APP_API_ENDPOINT
-const baseURL = 'https://seven-meals-stand.loca.lt/api'
+const baseURL = process.env.REACT_APP_API_ENDPOINT
+// const baseURL = 'https://seven-meals-stand.loca.lt/api'
 
 const instance = axios.create({
     baseURL,
