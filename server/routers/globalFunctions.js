@@ -102,12 +102,11 @@ const sendMessage = async () => {
     isOverdue
   ) => {
     if (isOverdue) {
-      return `Хурматли ${name} сиз ${market_name} дан ${debt} uzs микдорида карзингиз мавжуд. ${pay_end_date} гача эди, аммо туловингиз кечикди илтимос уз вактида туловни амалга оширинг. Мурожаат учун ${market_number}`;
+      return `Xurmatli ${name} sizni ${market_name} dan ${debt} uzs miqdorda qarzingiz mavjud. ${pay_end_date} gacha edi, ammo to'lovingiz kechikdi iltimos o'z vaqtida amalga oshiring. Murojat uchun ${market_number}`;
     } else {
-      return `Хурматли ${name} сиз ${market_name} дан ${debt} uzs микдорида карзингиз мавжуд. ${pay_end_date} гача туловни амалга оширинг. Мурожаат учун ${market_number}`;
+      return `Xurmatli ${name} sizni ${market_name} dan ${debt} uzs miqdorda qarzingiz mavjud. ${pay_end_date} gacha to'lovni amalga oshiring. Murojat uchun ${market_number}`;
     }
   };
-
   try {
     const now = moment();
     const saleConnectors = await SaleConnector.find();
@@ -119,16 +118,15 @@ const sendMessage = async () => {
           const debtEndDate = moment(debt.pay_end_date);
           const daysUntilPayment = debtEndDate.diff(now, 'days');
           const isOverdue = daysUntilPayment < 0;
-
           if (debt.debt > 0 && debt.debtuzs && (isOverdue || (daysUntilPayment >= 0 && daysUntilPayment <= 3))) {
             const market = await Market.findById(el.market);
             const client = await Client.findById(el.client);
             const user = await User.findById(el.user);
             const SMS_API_KEY = market.SMS_API_KEY;
-
+            const validPhoneNumber = client.phoneNumber && client.phoneNumber.startsWith("+998") ? client.phoneNumber.slice(4) : client.phoneNumber;
             if (SMS_API_KEY) {
-              await axios.get(
-                `https://smsapp.uz/new/services/send.php?key=${SMS_API_KEY}&number=${client.phoneNumber}&message=${formatMessage(
+              const response = await axios.get(
+                `https://smsapp.uz/new/services/send.php?key=${SMS_API_KEY}&number=${validPhoneNumber}&message=${formatMessage(
                   client.name,
                   debt.debtuzs,
                   debtEndDate.format('MM/DD/YYYY'),
@@ -137,13 +135,13 @@ const sendMessage = async () => {
                   isOverdue
                 )}`
               );
+              console.log(`Messaging has ended! success: ${response.data.success}`);
             }
           }
         }
       }
     }
 
-    console.log('Messaging has ended!');
   } catch (error) {
     console.error('Failed to send message:', error.message);
   }

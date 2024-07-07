@@ -715,9 +715,9 @@ const sendMessageToClientAboutHisDebt = async (client, debtUzs, debtDate, userPh
       market_number,
       market_name,
     ) => {
-      return `Хурматли ${name} сиз ${market_name} дан ${debt} uzs микдорида карзингиз мавжуд. ${pay_end_date} гача туловни амалга оширинг. Мурожаат учун ${market_number}`;
+      return `Hurmatli ${name} sizni ${market_name} dan ${debt} uzs miqdorida qarzingiz mavjud. ${pay_end_date} gacha to'lovni amalga oshiring. Murojaat uchun ${market_number}`;
     }
-    
+
     const debtEndDate = moment(debtDate);
     "s".split
     const validPhoneNumber = client.phoneNumber && client.phoneNumber.startsWith("+998") ? client.phoneNumber.slice(4) : client.phoneNumber;
@@ -730,8 +730,7 @@ const sendMessageToClientAboutHisDebt = async (client, debtUzs, debtDate, userPh
         market.name,
       )}`
     );
-    console.log(response.data);
-    console.log('Messaging has ended!');
+    console.log(`Messaging has ended! success: ${response.data.success}`);
   } catch (error) {
     console.log(error);
     throw new Error(error)

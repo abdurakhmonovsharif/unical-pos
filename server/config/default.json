@@ -4,5 +4,3 @@
   "jwtSecret": "market",
   "baseUrl": "http://localhost:8801" 
 }
-
-  
