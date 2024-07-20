@@ -4,7 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const http = require("http");
 const server = http.createServer(app);
-const schedule = require('node-schedule');
+const schedule = require("node-schedule");
 const { Server } = require("socket.io");
 const { start } = require("./connectDB/db");
 const { socketIO } = require("./socketio/socket");
@@ -22,7 +22,7 @@ app.use(cors());
 
 socketIO(io);
 
-start(server).then(()=>{});
+start(server).then(() => {});
 
 routers(app);
 
@@ -34,10 +34,10 @@ if (process.env.NODE_ENV === "production") {
       path.resolve(__dirname, "./../frontend", "build", "index.html")
     );
   });
-  }
-//   schedule.scheduleJob('0 9 * * *', async () => {
-//   await sendMessage(); 
-// });
-(async () => {
+}
+schedule.scheduleJob("0 9 * * *", async () => {
   await sendMessage();
-})();
+});
+// (async () => {
+//   await sendMessage();
+// })();

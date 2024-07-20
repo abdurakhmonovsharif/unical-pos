@@ -95,6 +95,7 @@ const Sellings = ({id}) => {
         id: '',
         client: '',
         product: '',
+        phoneNumber:""
     })
     const [sorItem, setSorItem] = useState({
         filter: '',
@@ -318,28 +319,7 @@ const Sellings = ({id}) => {
             setFilteredDataTotal(filteredProducts.length)
         }
     }
-    const handleChangeClient = (e) => {
-        const val = e.target.value
-        const valForSearch = val.toLowerCase().replace(/\s+/g, ' ').trim()
-        setSearch({...search, client: val})
-        ;(searchedData.length > 0 || totalSearched > 0) &&
-            dispatch(clearSearchedSellings())
-        if (valForSearch === '') {
-            setData(sellings)
-            setFilteredDataTotal(total)
-        } else {
-            const filteredProducts = filter(sellings, (selling) => {
-                return (
-                    selling?.client?.name
-                        .toLowerCase()
-                        .includes(valForSearch) ||
-                    selling?.packman?.name.toLowerCase().includes(valForSearch)
-                )
-            })
-            setData(filteredProducts)
-            setFilteredDataTotal(filteredProducts.length)
-        }
-    }
+  
     const handleChangeIdAndClientWhenPressEnter = (e) => {
         if (e.key === 'Enter') {
             setCurrentPage(0)
@@ -631,7 +611,54 @@ const Sellings = ({id}) => {
         }
         dispatch(getSellingsByFilter(body))
     }
-
+    const [searchingStatus,setSearchingStatus]=useState(false)
+    const handleChangeClient = (e) => {
+        const val = e.target.value;
+        setSearchingStatus(true)
+        const valForSearch = val?.toLowerCase().replace(/\s+/g, ' ').trim()
+        setSearch({...search, client: val})
+        ;(searchedData.length > 0 || totalSearched > 0) &&
+            dispatch(clearSearchedSellings())
+        if (valForSearch === '') {
+            setData(sellings)
+            setSearchedData([])
+            setSearchingStatus(false)
+            setFilteredDataTotal(total)
+        } else {
+            const filteredProducts = filter(sellings, (selling) => {
+                return (
+                    selling?.client?.name
+                        .toLowerCase()
+                        .includes(valForSearch) ||
+                    selling?.packman?.name.toLowerCase().includes(valForSearch)
+                )
+            })
+            setSearchedData(filteredProducts);
+            setFilteredDataTotal(filteredProducts.length)
+        }
+    }
+    const handleChangeClientPhoneNumber = (e) => {
+        const val = e.target.value;
+        setSearchingStatus(true)
+        const valForSearch = val?.toLowerCase().replace(/\s+/g, ' ').trim()
+        setSearch({...search, phoneNumber: val})
+        ;(searchedData.length > 0 || totalSearched > 0) &&
+            dispatch(clearSearchedSellings())
+        if (valForSearch === '') {
+            setData(sellings)
+            setSearchedData([])
+            setSearchingStatus(false)
+            setFilteredDataTotal(total)
+        } else {
+            const filteredProducts = filter(sellings, (selling) => {
+                return (
+                    selling?.client?.phoneNumber?.toLowerCase()?.includes(valForSearch) 
+                )
+            })
+            setSearchedData(filteredProducts);
+            setFilteredDataTotal(filteredProducts.length)
+        }
+    }
     return (
         <motion.section
             key='content'
@@ -684,8 +711,11 @@ const Sellings = ({id}) => {
                             'endDate',
                             'id',
                             'clientName',
+                            // 'clientPhoneNumber',
                             'product_name',
                         ]}
+                        phoneNumber={search.phoneNumber}
+                        filterByClientPhoneNumber={handleChangeClientPhoneNumber}
                         filterByTotal={filterByTotal}
                         startDate={startDate}
                         setStartDate={setStartDate}
@@ -723,9 +753,14 @@ const Sellings = ({id}) => {
                                     'endDate',
                                     'id',
                                     'clientName',
+                            // 'clientPhoneNumber',
                                     'product_name',
+
                                 ]}
                                 filterByTotal={filterByTotal}
+                        filterByClientPhoneNumber={handleChangeClientPhoneNumber}
+                        phoneNumber={search.phoneNumber}
+
                                 startDate={startDate}
                                 setStartDate={setStartDate}
                                 endDate={endDate}
@@ -766,7 +801,7 @@ const Sellings = ({id}) => {
                     <NotFind text={`${t("Ro'yxat mavjud emas")}`} />
                 ) : !isMobile ? (
                     <Table
-                        data={searchedData.length > 0 ? searchedData : data}
+                        data={searchingStatus?searchedData:data}
                         currentPage={currentPage}
                         currency={currencyType}
                         countPage={showByTotal}
